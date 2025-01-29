@@ -12,15 +12,19 @@ import Autoplay from "embla-carousel-autoplay";
 import { companyName, getData } from "@/libs/data";
 import { getSolarData } from "@/libs/solardata"; // Import solar data
 import { usePathname } from "next/navigation";
+import { getAcData } from "@/libs/getAcData"; // Import solar data
 
 const ServicesCarousel = ({ company = companyName }) => {
   const pathname = usePathname();
 
   // Determine which data to use based on the route
-  const services =
-    pathname === "/companies/water-heater"
-      ? getSolarData(company) // Use solar data for water-heater route
-      : getData(company); // Use general data for other routes
+  const dynamicData =
+  pathname === "/companies/water-heater"
+    ? getSolarData(company) // Use solar data for water-heater route
+    : pathname === "/companies/ac"
+    ? getAcData(company) // Use AC-specific data for AC route
+    : getData(company); // Use general data for other routestData(company); // Use general data for other routes
+    const services = dynamicData || []; // Ensure services is always an array
 
   return (
     <Carousel

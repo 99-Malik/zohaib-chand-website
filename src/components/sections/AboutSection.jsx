@@ -17,9 +17,18 @@ const AboutSection = ({ company = companyName }) => {
     "Improper Installation Issues",
     "Blocked or Clogged Pipes",
     "Circulation Pump Not Working",
-  ];
+];
 
-  const generalServices = [
+const acServices = [
+    "AC Repair & Maintenance",
+    "AC Leaking Water Issues",
+    "Faulty Thermostat Issues",
+    "Improper AC Installation",
+    "Compressor & Refrigerant Issues",
+    "Weak Airflow & Ventilation Problems",
+];
+
+const generalServices = [
     "Washing Machine Repair",
     "Dryer Repair",
     "Dishwasher Repair",
@@ -27,13 +36,15 @@ const AboutSection = ({ company = companyName }) => {
     "Television Repair",
     "Gas Oven Repair",
     "Fridge Repair",
-  ];
+];
 
-  // Determine which services to display
-  const services =
+// Determine which services to display
+const services =
     pathname === "/companies/water-heater"
-      ? waterHeaterServices
-      : generalServices;
+        ? waterHeaterServices
+        : pathname === "/companies/ac"
+        ? acServices
+        : generalServices;
 
   return (
     <section id="about" className="grid md:grid-cols-2 w-full min-h-[40rem]">

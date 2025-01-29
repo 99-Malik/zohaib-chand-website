@@ -17,7 +17,7 @@ const MainBanner = ({ company = companyName }) => {
           <h2 className="mb-3">
             Reliable <span className="text-primary">&</span> Affordable
           </h2>
-          <h1 className="text-4xl uppercase">We offer premium</h1>
+          <h1 className="text-4xl uppercase">We Offer Repair Service across UAE. </h1>
           <h1 className="text-4xl font-bold">{dynamicCompany} repairs</h1>
           <CallAndWhatsappButton
             company={dynamicCompany}

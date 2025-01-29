@@ -13,8 +13,11 @@ const Header = ({ company = companyName }) => {
 
   // Check the route and override company name for specific paths
   const dynamicCompany =
-    pathname === "/companies/water-heater" ? "Home Appliance Fix UAE" : company;
-
+  pathname === "/companies/water-heater"
+    ? "Home Appliance Fix UAE"
+    : pathname === "/companies/ac"
+    ? "Home Appliance Fix UAE"
+    : company;
   return (
     <header className="flex flex-col w-full items-center justify-center border-b border-black/5">
       <Topbar company={dynamicCompany} />
@@ -48,6 +51,10 @@ const Header = ({ company = companyName }) => {
         ) : dynamicCompany === "Home Appliance Fix UAE" ? (
           <Link href="/companies/water-heater" className="text-xl font-bold">
             {dynamicCompany}
+          </Link>
+        ) : dynamicCompany === "Home Appliance Fix UAE" ? (
+          <Link href="/companies/ac">
+            <Image src="/static/ac.svg" width={120} height={50} alt="AC" />
           </Link>
         ) : (
           <Link href="/" className="text-xl font-bold">

@@ -5,15 +5,18 @@ import { getSolarData } from "@/libs/solardata"; // Import solar data
 import OneService from "./OneService";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import { getAcData } from "@/libs/getAcData"; // Import solar data
 
 const ServiceDetails = ({ company = companyName }) => {
   const pathname = usePathname();
 
   // Determine which data to use based on the route
   const services =
-    pathname === "/companies/water-heater"
-      ? getSolarData(company) // Use solar data for water-heater route
-      : getData(company); // Use general data for other routes
+  pathname === "/companies/water-heater"
+    ? getSolarData(company) // Use solar data for water-heater route
+    : pathname === "/companies/ac"
+    ? getAcData(company) // Use AC-specific data for AC route
+    : getData(company); // Use general data for other routes
 
   return (
     <div
