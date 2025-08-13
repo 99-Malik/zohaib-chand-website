@@ -10,7 +10,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-import { companyName, getData } from "@/libs/data";
+import { companyName, getData, dialPhone, sendMessage } from "@/libs/data";
 import { Menu, X, ChevronDown, Home, Info, Wrench, Phone } from "lucide-react";
 import NavLink from "./NavLink";
 import { cn } from "@/lib/utils";
@@ -34,7 +34,7 @@ const Sidebar = ({ company = companyName }) => {
               <SheetTitle className="text-xl font-bold text-gray-900">
                 {company}
               </SheetTitle>
-            
+             
             </div>
             <SheetDescription className="text-sm text-gray-600 mt-2">
               Professional Appliance Services
@@ -118,10 +118,16 @@ const Sidebar = ({ company = companyName }) => {
             <div className="text-center">
               <p className="text-xs text-gray-500 mb-2">Need immediate help?</p>
               <div className="flex gap-2">
-                <button className="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-3 rounded-lg transition-colors duration-200">
+                <button 
+                  onClick={dialPhone}
+                  className="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-3 rounded-lg transition-colors duration-200"
+                >
                   Call Now
                 </button>
-                <button className="flex-1 bg-green-600 hover:bg-green-700 text-white text-sm font-medium py-2 px-3 rounded-lg transition-colors duration-200">
+                <button 
+                  onClick={sendMessage}
+                  className="flex-1 bg-green-600 hover:bg-green-700 text-white text-sm font-medium py-2 px-3 rounded-lg transition-colors duration-200"
+                >
                   WhatsApp
                 </button>
               </div>
