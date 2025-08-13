@@ -3,9 +3,15 @@ import Link from "next/link";
 
 const NavLink = ({ title, href, className }) => {
   return (
-    <Link className={cn("group relative w-fit", className)} href={href}>
-      <span>{title}</span>
-      <span className="w-0 absolute bottom-0.5 left-0 transition-all ease-in duration-200 group-hover:w-full h-[1px] bg-black"></span>
+    <Link 
+      className={cn(
+        "group relative w-fit font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200 py-2",
+        className
+      )} 
+      href={href}
+    >
+      <span className="relative z-10">{title}</span>
+      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 ease-out group-hover:w-full"></span>
     </Link>
   );
 };

@@ -1,3 +1,4 @@
+"use client";
 import { companyName } from "@/libs/data";
 import CallAndWhatsappButton from "../buttons/CallAndWhatsappButton";
 import { cn } from "@/lib/utils";
@@ -28,7 +29,7 @@ const WhyChooseUs = ({ company = companyName }) => {
          We understand that choosing the right appliance repair
             service is crucial for your home. Our commitment to excellence,
             combined with our extensive experience, makes us the ideal choice
-            for all your appliance needs. Here’s why our customers trust us:
+            for all your appliance needs. Here's why our customers trust us:
           </p>
           <ul className="list-disc list-inside space-y-2">
             <li>

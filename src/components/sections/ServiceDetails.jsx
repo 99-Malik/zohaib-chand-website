@@ -54,7 +54,7 @@ const ServiceDetails = ({ company = companyName }) => {
           appliance repair needs.
         </div>
       </div>
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-5 gap-5">
+      <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 p-5 gap-5 items-stretch">
         {services.map((service) => (
           <OneService
             key={service.slug}

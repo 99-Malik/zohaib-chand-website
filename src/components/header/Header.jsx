@@ -1,7 +1,6 @@
 "use client";
-import { companyName } from "@/libs/data";
+import { companyName, dialPhone } from "@/libs/data";
 import Link from "next/link";
-import Topbar from "./Topbar";
 import Sidebar from "./Sidebar";
 import NavLink from "./NavLink";
 import ServicesDropdown from "./ServicesDropdown";
@@ -16,56 +15,74 @@ const Header = ({ company = companyName }) => {
       ? "Home Appliance Fix UAE"
       : pathname === "/companies/ac"
       ? "Home Appliance Fix UAE"
-      : pathname==="/companies/lg"
-      ? "Home Appliances Fix UAE"
-      : pathname==="/companies/bosch"
-      ? "Home Appliances Fix UAE"
-      : pathname==="/companies/siemens"
-      ? "Home Appliances Fix UAE"
-      : pathname==="/companies/samsung"
-     
+      : pathname === "/companies/lg"
+      ? "Appliance Repair Website"
+      : pathname === "/companies/siemens"
+      ? "Appliance Repair Website"
+      : pathname === "/companies/samsung"
+      ? "Appliance Repair Website"
+      : companyName;
 
   return (
-    <header className="flex flex-col w-full items-center justify-center border-b border-black/5">
-      <Topbar company={dynamicCompany} />
-      <div className="flex w-full justify-between px-5 py-4 max-w-7xl items-center gap-5">
-        {/* {dynamicCompany === "Siemens" ? (
-          <Link href="/companies/siemens">
-            <Image src="/static/siemens.svg" width={150} height={50} alt="Siemens" />
-          </Link>
-        ) : dynamicCompany === "Bosch" ? (
-          <Link href="/companies/bosch">
-            <Image src="/static/bosch.svg" width={150} height={50} alt="Bosch" />
-          </Link>
-        ) : dynamicCompany === "Samsung" ? (
-          <Link href="/companies/samsung">
-            <Image src="/static/samsung.svg" width={120} height={50} alt="Samsung" />
-          </Link>
-        ) : dynamicCompany === "Lg" ? (
-          <Link href="/companies/lg">
-            <Image src="/static/lg.svg" width={100} height={50} alt="LG" />
-          </Link>
-        ) : dynamicCompany === "Home Appliance Fix UAE" && pathname === "/companies/water-heater" ? (
-          <Link href="/companies/water-heater" className="text-xl font-bold">
-            {dynamicCompany}
-          </Link>
-        ) : dynamicCompany === "Home Appliance Fix UAE" && pathname === "/companies/ac" ? (
-          <Link href="/companies/ac" className="text-xl font-bold">
-            {dynamicCompany}
-          </Link>
-        ) : ( */}
-          <Link href="/" className="text-xl font-bold">
-            {dynamicCompany}
-          </Link>
+    <header className="sticky top-0 z-50 w-full bg-white shadow-md border-b border-gray-100">
       
+      {/* Main Header */}
+      <div className="w-full px-3 sm:px-4 md:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 md:h-20">
+          {/* Logo/Brand Section */}
+          <div className="flex items-center space-x-2 md:space-x-4">
+            <Link 
+              href="/" 
+              className="flex items-center space-x-2 md:space-x-3 group transition-all duration-300 hover:scale-105"
+            >
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-600 rounded-lg flex items-center justify-center shadow-lg">
+                <span className="text-white font-bold text-lg md:text-xl">A</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-lg md:text-2xl font-bold text-gray-900 leading-tight">
+                  {dynamicCompany}
+                </span>
+                <span className="text-xs md:text-sm text-gray-500 font-medium hidden sm:block">
+                  Professional Appliance Services
+                </span>
+              </div>
+            </Link>
+          </div>
 
-        <Sidebar company={dynamicCompany} />
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center space-x-8">
+            <NavLink 
+              title="Home" 
+              href="/" 
+              className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium"
+            />
+            <NavLink 
+              title="About" 
+              href="#about" 
+              className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium"
+            />
+            <ServicesDropdown company={dynamicCompany} />
+            <NavLink 
+              title="Contact" 
+              href="#contact" 
+              className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium"
+            />
+          </nav>
 
-        <div className="items-center hidden md:flex gap-4">
-          <NavLink title="Home" href="/" />
-          <NavLink title="About" href="#about" />
-          <ServicesDropdown company={dynamicCompany} />
-          <NavLink title="Contact" href="#contact" />
+          {/* CTA Button */}
+          <div className="hidden md:flex items-center space-x-4">
+            <button
+              onClick={dialPhone}
+              className="px-4 md:px-6 py-2 md:py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 hover:bg-blue-700 text-sm md:text-base"
+            >
+              Get Quote
+            </button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="lg:hidden">
+            <Sidebar company={dynamicCompany} />
+          </div>
         </div>
       </div>
     </header>
