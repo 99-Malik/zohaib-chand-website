@@ -16,11 +16,11 @@ const Header = ({ company = companyName }) => {
       : pathname === "/companies/ac"
       ? "Home Appliance Fix UAE"
       : pathname === "/companies/lg"
-      ? "Appliance Repair Website"
+      ? "Gulf Service Center UAE"
       : pathname === "/companies/siemens"
-      ? "Appliance Repair Website"
+      ? "Gulf Service Center UAE"
       : pathname === "/companies/samsung"
-      ? "Appliance Repair Website"
+      ? "Gulf Service Center UAE"
       : companyName;
 
   return (
@@ -36,15 +36,15 @@ const Header = ({ company = companyName }) => {
               className="flex items-center space-x-2 md:space-x-3 group transition-all duration-300 hover:scale-105"
             >
               <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-600 rounded-lg flex items-center justify-center shadow-lg">
-                <span className="text-white font-bold text-lg md:text-xl">A</span>
+                <span className="text-white font-bold text-lg md:text-xl">G</span>
               </div>
               <div className="flex flex-col">
                 <span className="text-lg md:text-2xl font-bold text-gray-900 leading-tight">
                   {dynamicCompany}
                 </span>
-                <span className="text-xs md:text-sm text-gray-500 font-medium hidden sm:block">
+                {/* <span className="text-xs md:text-sm text-gray-500 font-medium hidden sm:block">
                   Professional Appliance Services
-                </span>
+                </span> */}
               </div>
             </Link>
           </div>
