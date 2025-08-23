@@ -4,23 +4,23 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import {
-  CheckCircle2,
-  ShieldCheck,
+  CheckCircle,
+  BadgeCheck,
+  Timer,
   Wrench,
-  Clock,
-  Sparkles,
+  Cog,
   PhoneCall,
-  Phone,
-  MessageCircle,
+  Star,
+  Users,
+  Settings
 } from "lucide-react";
 import CallAndWhatsappButton from "../buttons/CallAndWhatsappButton";
-import { cn } from "@/lib/utils";
-import { companyName, getData, phoneNumber, dialPhone, sendMessage } from "@/libs/data";
+import { companyName, dialPhone } from "@/libs/data";
 
 const AboutSection = ({ company = companyName }) => {
   const pathname = usePathname();
 
-  // --- ROUTE-BASED CONTENT ---------------------------------------------------
+  // Route-specific services
   const waterHeaterServices = [
     "Solar Water Heater Repair",
     "Leaking Pipes & Connections",
@@ -53,169 +53,191 @@ const AboutSection = ({ company = companyName }) => {
     pathname === "/companies/water-heater"
       ? waterHeaterServices
       : pathname === "/companies/ac"
-      ? acServices
-      : generalServices;
+        ? acServices
+        : generalServices;
 
-  // --- VISUALS ---------------------------------------------------------------
-  const brandBarClass = cn(
-    "h-1 w-28 rounded-full",
-    company === "Lg"
-      ? "bg-lgPrimary"
-      : company === "Samsung"
-      ? "bg-samsungPrimary"
-      : company === "Bosch"
-      ? "bg-boschPrimary"
-      : company === "Siemens"
-      ? "bg-siemensPrimary"
-      : "bg-emerald-500"
-  );
-
-  const heroImage =
-    pathname === "/companies/water-heater"
-      ? "/static/about-water-heater.jpg"
-      : pathname === "/companies/ac"
-      ? "/static/about-ac.jpg"
-      : "/static/about.jpg";
-
-  // --- FEATURE HIGHLIGHTS ----------------------------------------------------
+  // Highlights with updated icons
   const highlights = [
-    {
-      icon: <ShieldCheck className="h-4 w-4" />,
-      label: "90-day warranty",
-    },
-    { icon: <Clock className="h-4 w-4" />, label: "Same-day service" },
-    { icon: <Wrench className="h-4 w-4" />, label: "Certified technicians" },
-    { icon: <Sparkles className="h-4 w-4" />, label: "Genuine parts" },
+    { icon: <BadgeCheck className="h-4 w-4" />, label: "90-Day Warranty" },
+    { icon: <Timer className="h-4 w-4" />, label: "Same-Day Service" },
+    { icon: <Wrench className="h-4 w-4" />, label: "Certified Technicians" },
+    { icon: <Cog className="h-4 w-4" />, label: "Genuine Parts" },
   ];
 
-  // --- STATS -----------------------------------------------------------------
   const stats = [
-    { value: "10k+", label: "Repairs completed" },
-    { value: "4.8★", label: "Customer rating" },
-    { value: "25+", label: "Expert technicians" },
+    { value: "10k+", label: "Repairs Completed", icon: <Settings className="h-5 w-5 text-orange-500" /> },
+    { value: "4.8★", label: "Customer Rating", icon: <Star className="h-5 w-5 text-orange-500" /> },
+    { value: "25+", label: "Expert Technicians", icon: <Users className="h-5 w-5 text-orange-500" /> },
   ];
 
   return (
-    <section id="about" className="relative isolate">
-      {/* BACKDROP ACCENT */}
-      <div className="pointer-events-none absolute inset-x-0 -top-24 -z-10 h-56 bg-gradient-to-b from-primary/5 to-transparent blur-2xl" />
+    <section id="about" className="relative isolate overflow-hidden">
+      {/* Background pattern */}
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]" />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
-        <div className="grid items-stretch gap-10 lg:gap-12 lg:grid-cols-12">
-          {/* LEFT: VISUAL PANEL */}
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-white via-orange-50/30 to-white" />
+
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+        <div className="grid items-stretch gap-12 lg:grid-cols-12">
+          {/* LEFT VISUAL PANEL - Modernized */}
           <motion.aside
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
             className="lg:col-span-5"
           >
-            <div className="relative overflow-hidden rounded-3xl bg-gray-100 ring-1 ring-black/5 shadow-sm">
-              <div
-                className="aspect-[4/5] w-full bg-cover bg-center"
-                style={{ backgroundImage: `url(${"/washing-machine-repair.jpg"})` }}
-                aria-label="Technician repairing home appliance"
-              />
-              {/* overlay */}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
-              {/* badges */}
-              <div className="absolute left-4 right-4 bottom-4 flex flex-wrap items-center gap-2">
-                {highlights.map((h) => (
-                  <span
-                    key={h.label}
-                    className="inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-gray-800 shadow-sm ring-1 ring-black/5 backdrop-blur"
-                  >
-                    {h.icon}
-                    {h.label}
-                  </span>
-                ))}
+            <div className="relative overflow-hidden rounded-2xl bg-gray-50 shadow-xl ring-1 ring-gray-100/50">
+              {/* Modern image container with subtle border */}
+              <div className="relative">
+                <div
+                  className="aspect-[4/5] w-full bg-cover bg-center"
+                  style={{ backgroundImage: `url("/fridge-repair.jpg")` }}
+                />
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+
+                {/* Floating highlights - modernized */}
+                <div className="absolute left-4 right-4 bottom-4 flex flex-wrap gap-3">
+                  {highlights.map((h, i) => (
+                    <motion.span
+                      key={h.label}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: i * 0.1 }}
+                      viewport={{ once: true }}
+                      className="inline-flex items-center gap-2 rounded-xl 
+                 bg-gradient-to-r from-orange-500/90 to-amber-500/90 
+                 px-3.5 py-2 text-xs font-semibold text-white 
+                 shadow-lg backdrop-blur-md 
+                 hover:scale-105 hover:shadow-xl transition-all duration-300"
+                    >
+                      <div className="flex h-5 w-5 items-center justify-center rounded-full bg-white/20">
+                        {h.icon}
+                      </div>
+                      {h.label}
+                    </motion.span>
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* stats card */}
-            <div className="mt-4 grid grid-cols-3 divide-x divide-gray-200 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm">
-              {stats.map((s) => (
-                <div key={s.label} className="p-4 text-center">
-                  <div className="text-lg font-semibold">{s.value}</div>
-                  <div className="text-[12px] text-gray-500">{s.label}</div>
-                </div>
+            {/* Stats - modernized */}
+            <div className="mt-8 grid grid-cols-3 gap-4">
+              {stats.map((s, i) => (
+                <motion.div
+                  key={s.label}
+                  initial={{ opacity: 0, y: 8 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 + i * 0.1 }}
+                  viewport={{ once: true }}
+                  className="flex flex-col items-center justify-center rounded-xl bg-white 
+                             shadow-sm p-4 text-center hover:shadow-md transition-all duration-300
+                             border border-gray-100"
+                >
+                  <div className="mb-2 flex justify-center">{s.icon}</div>
+                  <div className="text-xl font-bold text-gray-900">{s.value}</div>
+                  <div className="text-xs text-gray-500 mt-1">{s.label}</div>
+                </motion.div>
               ))}
             </div>
           </motion.aside>
 
-          {/* RIGHT: CONTENT PANEL */}
+          {/* RIGHT CONTENT - Modernized */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.05 }}
-            className="lg:col-span-7"
+            viewport={{ once: true }}
+            className="lg:col-span-7 flex flex-col justify-center"
           >
             <div className="max-w-2xl">
-              <div className="mb-3 flex items-center gap-3">
-                <span className="text-[11px] uppercase tracking-wider text-gray-500">
-                  About us
+              {/* Section Label - modernized */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.1 }}
+                viewport={{ once: true }}
+                className="inline-flex items-center gap-2 rounded-full bg-orange-100 px-4 py-2 mb-6"
+              >
+                <span className="text-xs uppercase tracking-wider text-orange-700 font-semibold">
+                  About Us
                 </span>
-                <span className={brandBarClass} />
-              </div>
+                <span className="h-1 w-1 rounded-full bg-orange-500" />
+                <span className="text-xs text-orange-600">Since 2010</span>
+              </motion.div>
 
-              <h2 className="text-2xl leading-tight font-semibold text-gray-900 sm:text-3xl">
-                Fast, reliable appliance repairs—done right the first time.
+              {/* Heading - modernized */}
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                Fast, reliable appliance repairs{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-amber-600">you can trust</span>.
               </h2>
 
-              <p className="mt-4 text-[15px] leading-7 text-gray-600">
-                We’re a UAE-based team of certified technicians delivering
-                same-day repairs for major home appliances. From precise
-                diagnostics to genuine parts and clean workmanship, we bring
-                manufacturer-level care to every job—so your home runs smoothly
-                again, fast.
+              {/* Copy - modernized */}
+              <p className="mt-6 text-lg text-gray-600 leading-relaxed">
+                We're a UAE-based team of certified technicians delivering{" "}
+                <span className="font-semibold text-gray-800">
+                  same-day repairs
+                </span>{" "}
+                for all major home appliances. From diagnostics to genuine parts
+                and clean workmanship, we ensure{" "}
+                <span className="font-semibold text-orange-600">
+                  peace of mind
+                </span>{" "}
+                every time.
               </p>
 
-              {/* services list */}
-              <div className="mt-8">
-                <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+              {/* Services - modernized */}
+              <div className="mt-10">
+                <h3 className="text-base font-semibold text-gray-900 uppercase tracking-wide mb-4 flex items-center">
+                  <span className="h-5 w-1 bg-orange-500 rounded-full mr-3"></span>
                   Services we offer
                 </h3>
-
-                <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {services.map((item) => (
-                    <li
+                    <motion.li
                       key={item}
-                      className="group inline-flex items-start gap-2 rounded-xl border border-gray-100 bg-white p-3 shadow-sm transition hover:shadow-md"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                      viewport={{ once: true }}
+                      className="flex items-center gap-3 rounded-xl border border-gray-200 
+                                 bg-white p-4 text-gray-700 shadow-sm hover:shadow-md 
+                                 transition-all duration-200 hover:-translate-y-0.5"
                     >
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 text-emerald-600" />
-                      <span className="text-[14px] text-gray-800">{item}</span>
-                    </li>
+                      <div className="flex h-6 w-6 items-center justify-center rounded-full bg-orange-100">
+                        <CheckCircle className="h-4 w-4 text-orange-600" />
+                      </div>
+                      <span className="text-sm font-medium">{item}</span>
+                    </motion.li>
                   ))}
                 </ul>
               </div>
 
-              {/* trust row */}
-              <div className="mt-6 flex flex-wrap items-center gap-3 text-[12px] text-gray-500">
-                <span className="inline-flex items-center gap-1 rounded-full bg-gray-50 px-3 py-1 ring-1 ring-gray-200">
-                  <ShieldCheck className="h-3.5 w-3.5" />
-                  Insured service
-                </span>
-                <span className="inline-flex items-center gap-1 rounded-full bg-gray-50 px-3 py-1 ring-1 ring-gray-200">
-                  <Wrench className="h-3.5 w-3.5" />
-                  Multi-brand expertise
-                </span>
-                <span className="inline-flex items-center gap-1 rounded-full bg-gray-50 px-3 py-1 ring-1 ring-gray-200">
-                  <Clock className="h-3.5 w-3.5" />
-                  Flexible scheduling
-                </span>
-              </div>
-
-              {/* CTA */}
-              <div className="mt-10 flex flex-wrap items-center gap-3">
+              {/* CTA Row - modernized */}
+              <div className="mt-12 flex flex-wrap items-center gap-4">
                 <CallAndWhatsappButton company={company} />
                 <button
                   onClick={dialPhone}
-                  className="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-800 shadow-sm transition hover:bg-gray-50"
+                  className="inline-flex items-center gap-2 rounded-xl bg-white 
+                             px-5 py-3 text-base font-medium text-gray-900 shadow-sm 
+                             transition-all hover:shadow-md border border-gray-200
+                             hover:bg-gray-50"
                 >
-                  <PhoneCall className="h-4 w-4" />
+                  <PhoneCall className="h-5 w-5 text-orange-600" />
                   Call us now
                 </button>
+
+                {/* Additional trust signal */}
+                <div className="flex items-center text-sm text-gray-500 mt-4 sm:mt-0">
+                  <div className="flex -space-x-2 mr-2">
+                    {[1, 2, 3].map((item) => (
+                      <div key={item} className="h-6 w-6 rounded-full bg-orange-400 border-2 border-white"></div>
+                    ))}
+                  </div>
+                  <span>25+ technicians available today</span>
+                </div>
               </div>
             </div>
           </motion.div>

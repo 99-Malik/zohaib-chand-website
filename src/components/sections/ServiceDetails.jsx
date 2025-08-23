@@ -1,34 +1,42 @@
 "use client";
 
 import { getData, companyName } from "@/libs/data";
-import { getSolarData } from "@/libs/solardata"; // Import solar data
+import { getSolarData } from "@/libs/solardata";
+import { getAcData } from "@/libs/getAcData";
 import OneService from "./OneService";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import { getAcData } from "@/libs/getAcData"; // Import solar data
 
 const ServiceDetails = ({ company = companyName }) => {
   const pathname = usePathname();
 
-  // Determine which data to use based on the route
   const services =
-  pathname === "/companies/water-heater"
-    ? getSolarData(company) // Use solar data for water-heater route
-    : pathname === "/companies/ac"
-    ? getAcData(company) // Use AC-specific data for AC route
-    : getData(company); // Use general data for other routes
+    pathname === "/companies/water-heater"
+      ? getSolarData(company)
+      : pathname === "/companies/ac"
+      ? getAcData(company)
+      : getData(company);
 
   return (
-    <div
-      className="flex flex-col items-center justify-center w-full shadow-xl bg-black/5"
+    <section
       id="service-details"
+      className="relative isolate bg-gradient-to-b from-white via-gray-50 to-white py-20"
     >
-      <div className="flex flex-col items-center justify-center w-full max-w-7xl px-5 py-20 gap-5">
-        <div className="text-3xl w-fit flex justify-center items-center flex-col gap-2 font-semibold uppercase">
-          Service Details
+      {/* subtle background accent */}
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(#f97316/10_1px,transparent_1px)] [background-size:18px_18px]" />
+
+      <div className="max-w-7xl mx-auto px-5">
+        {/* Heading */}
+        <div className="text-center mb-14">
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900">
+            Our{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-amber-500">
+              Service Details
+            </span>
+          </h2>
           <div
             className={cn(
-              "w-1/2 h-0.5",
+              "mx-auto mt-3 h-1 w-20 rounded-full",
               company === "Lg"
                 ? "bg-lgPrimary"
                 : company === "Samsung"
@@ -37,37 +45,35 @@ const ServiceDetails = ({ company = companyName }) => {
                 ? "bg-boschPrimary"
                 : company === "Siemens"
                 ? "bg-siemensPrimary"
-                : "bg-primary"
+                : "bg-orange-500"
             )}
-          ></div>
-        </div>
-        <div className="max-w-6xl text-center text-sm">
-        We offer a comprehensive range of home appliance repair
-          services tailored to meet your specific needs. Our skilled technicians
-          are trained to handle various appliance issues, from refrigerators and
-          washers to ovens and dishwashers. We pride ourselves on our
-          transparent service process, ensuring that you're informed every step
-          of the way. With a commitment to using high-quality parts and the
-          latest repair techniques, we aim to restore your appliances to optimal
-          functioning as quickly and efficiently as possible. Explore our
-          detailed service offerings below to find the right solution for your
-          appliance repair needs.
-        </div>
-      </div>
-      <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 p-5 gap-5 items-stretch">
-        {services.map((service) => (
-          <OneService
-            key={service.slug}
-            title={service.title}
-            description={service.description}
-            commonProblems={service.commonProblems}
-            slug={service.slug}
-            company={company}
-            imgUrl={service.imgUrl}
           />
-        ))}
+          <p className="mt-6 max-w-3xl mx-auto text-lg text-gray-600 leading-relaxed">
+            We provide a complete range of{" "}
+            <span className="font-semibold text-gray-800">
+              expert appliance repairs
+            </span>{" "}
+            with transparent service, genuine parts, and fast turnaround.
+            Explore below to find the right solution for your needs.
+          </p>
+        </div>
+
+        {/* Services grid */}
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-2">
+          {services.map((service) => (
+            <OneService
+              key={service.slug}
+              title={service.title}
+              description={service.description}
+              commonProblems={service.commonProblems}
+              slug={service.slug}
+              company={company}
+              imgUrl={service.imgUrl}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -1,55 +1,77 @@
 "use client";
+
 import React from "react";
 import CallAndWhatsappButton from "./buttons/CallAndWhatsappButton";
-import { companyName } from "@/libs/data";
+import { ShieldCheck, Clock } from "lucide-react";
 
-const ServiceCard = ({
-  title,
-  desc,
-  imgUrl,
-  company,
-}) => {
+const ServiceCard = ({ title, desc, imgUrl, company }) => {
   return (
     <article className="group relative w-full h-full">
-      <div className="rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 h-full flex flex-col">
-        {/* Media */}
-        <div className="relative h-56 md:h-64 flex-shrink-0">
-          {/* Use <img> to avoid Next Image domain config requirements */}
+      <div className="rounded-2xl overflow-hidden bg-white/90 backdrop-blur-sm 
+                      border border-gray-200 shadow-md hover:shadow-xl 
+                      transition-all duration-500 h-full flex flex-col hover:-translate-y-1">
+
+        {/* Media Section */}
+        <div className="relative h-48 sm:h-56 md:h-60 flex-shrink-0 overflow-hidden rounded-t-2xl">
+          {/* Image */}
           <img
             src={imgUrl}
             alt={title}
             loading="lazy"
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
-          {/* Top badge glow */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
-          <div className="absolute left-4 top-4">
-            <span className="px-2.5 py-1 text-[11px] rounded-full bg-white/90 backdrop-blur border border-gray-200">
-              Expert Technicians
+
+          {/* Overlay gradient for readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent" />
+
+          {/* Modern Badge */}
+          <div className="absolute left-3 top-3">
+            <span
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg 
+                 bg-gradient-to-r from-orange-500 to-orange-400 
+                 text-white text-[11px] font-semibold shadow-md 
+                 backdrop-blur-sm"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-3.5 h-3.5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h7l5 5v11a2 2 0 01-2 2z" />
+              </svg>
+              Expert Care
             </span>
           </div>
         </div>
 
-        {/* Body */}
-        <div className="p-4 sm:p-5 flex flex-col flex-1 min-h-0">
-          <h3 className="text-base md:text-lg font-semibold leading-snug mb-2 flex-shrink-0">
+        {/* Body Section */}
+        <div className="p-5 flex flex-col flex-1">
+          {/* Title */}
+          <h3 className="text-base md:text-lg font-semibold text-gray-900 leading-snug mb-2">
             {title}
           </h3>
-          <p className="text-sm text-gray-600 line-clamp-3 mb-3 flex-shrink-0">{desc}</p>
 
-          <div className="mb-3 flex items-center justify-between flex-shrink-0">
-            <div className="flex items-center gap-2 text-[12px] text-gray-500">
-              <span className="inline-flex items-center gap-1">
-                <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                Same-day Service
-              </span>
-              <span className="hidden sm:inline">•</span>
-              <span className="hidden sm:inline">90-day Warranty</span>
-            </div>
+          {/* Description */}
+          <p className="text-sm text-gray-600 line-clamp-3 mb-4">
+            {desc}
+          </p>
+
+          {/* Highlights */}
+          <div className="mb-4 flex flex-wrap items-center gap-3 text-xs text-gray-500">
+            <span className="flex items-center gap-1">
+              <Clock size={14} className="text-orange-500" />
+              Same-day Service
+            </span>
+            <span className="flex items-center gap-1">
+              <ShieldCheck size={14} className="text-emerald-500" />
+              90-day Warranty
+            </span>
           </div>
 
-          {/* Contact Buttons */}
-          <div className="mt-auto pt-2 flex-shrink-0">
+          {/* CTA Buttons */}
+          <div className="mt-auto">
             <CallAndWhatsappButton company={company} />
           </div>
         </div>

@@ -1,17 +1,29 @@
 "use client";
+
 import { companyName } from "@/libs/data";
 import CallAndWhatsappButton from "../buttons/CallAndWhatsappButton";
 import { cn } from "@/lib/utils";
+import {
+  Wrench,
+  ShieldCheck,
+  BadgeDollarSign,
+  CalendarClock,
+  Smile,
+  Headset,
+} from "lucide-react";
 
 const WhyChooseUs = ({ company = companyName }) => {
   return (
-    <section id="contact" className="flex justify-center w-full">
-      <div className="flex w-full max-w-7xl px-5 py-20 flex-col justify-center items-center">
-        <div className="text-3xl w-fit flex justify-center items-center flex-col gap-2 font-semibold uppercase mb-8">
-          Why Choose Us
+    <section id="why-us" className="relative bg-gradient-to-b from-white via-gray-50 to-white py-20">
+      <div className="max-w-7xl mx-auto px-5 text-center">
+        {/* Heading */}
+        <div className="mb-14">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900">
+            Why <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-amber-500">Choose Us</span>
+          </h2>
           <div
             className={cn(
-              "w-1/2 h-0.5",
+              "mx-auto mt-3 h-1 w-24 rounded-full",
               company === "Lg"
                 ? "bg-lgPrimary"
                 : company === "Samsung"
@@ -20,53 +32,68 @@ const WhyChooseUs = ({ company = companyName }) => {
                 ? "bg-boschPrimary"
                 : company === "Siemens"
                 ? "bg-siemensPrimary"
-                : "bg-primary"
+                : "bg-orange-500"
             )}
-          ></div>
-        </div>
-        <div className="max-w-6xl mx-auto text-lg mb-6">
-          <p className="mb-4">
-         We understand that choosing the right appliance repair
-            service is crucial for your home. Our commitment to excellence,
-            combined with our extensive experience, makes us the ideal choice
-            for all your appliance needs. Here's why our customers trust us:
+          />
+          <p className="mt-6 max-w-2xl mx-auto text-gray-600 text-lg">
+            Choosing the right appliance repair service matters. Here’s why
+            thousands of UAE households trust us with their home essentials:
           </p>
-          <ul className="list-disc list-inside space-y-2">
-            <li>
-              <span className="font-bold">Expert Technicians:</span> Our
-              certified technicians are well-trained in the latest repair
-              techniques, ensuring efficient and reliable service.
-            </li>
-            <li>
-              <span className="font-bold">Quality Repairs:</span> We use
-              top-quality parts and tools, restoring your appliances to their
-              optimal performance.
-            </li>
-            <li>
-              <span className="font-bold">Transparent Pricing:</span> Enjoy
-              clear and competitive pricing with no hidden fees, so you know
-              exactly what to expect.
-            </li>
-            <li>
-              <span className="font-bold">Convenient Service:</span> We offer
-              flexible scheduling options, including same-day and emergency
-              services, to fit your busy lifestyle.
-            </li>
-            <li>
-              <span className="font-bold">
-                Customer Satisfaction Guarantee:
-              </span>{" "}
-              We back our work with a warranty on all repairs, ensuring peace of
-              mind with every service.
-            </li>
-            <li>
-              <span className="font-bold">Responsive Support:</span> Our
-              friendly customer service team is always ready to assist with any
-              questions or concerns you may have.
-            </li>
-          </ul>
         </div>
-        <CallAndWhatsappButton company={company} className="py-5" />
+
+        {/* Features Grid */}
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto mb-12">
+          {[
+            {
+              icon: <Wrench className="h-6 w-6 text-orange-600" />,
+              title: "Expert Technicians",
+              desc: "Certified professionals trained on the latest appliance repair techniques.",
+            },
+            {
+              icon: <ShieldCheck className="h-6 w-6 text-orange-600" />,
+              title: "Quality Repairs",
+              desc: "We use only genuine parts and top-grade tools to restore performance.",
+            },
+            {
+              icon: <BadgeDollarSign className="h-6 w-6 text-orange-600" />,
+              title: "Transparent Pricing",
+              desc: "Clear, competitive pricing with no hidden charges—ever.",
+            },
+            {
+              icon: <CalendarClock className="h-6 w-6 text-orange-600" />,
+              title: "Convenient Service",
+              desc: "Flexible scheduling including same-day and emergency visits.",
+            },
+            {
+              icon: <Smile className="h-6 w-6 text-orange-600" />,
+              title: "Satisfaction Guarantee",
+              desc: "Every repair comes with warranty-backed assurance for peace of mind.",
+            },
+            {
+              icon: <Headset className="h-6 w-6 text-orange-600" />,
+              title: "Responsive Support",
+              desc: "Friendly support team always ready to help with questions and follow-ups.",
+            },
+          ].map((feature, idx) => (
+            <div
+              key={idx}
+              className="rounded-2xl bg-white border border-gray-100 p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+            >
+              <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-orange-100 mb-4 mx-auto">
+                {feature.icon}
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">
+                {feature.title}
+              </h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                {feature.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Call to Action */}
+        <CallAndWhatsappButton company={company} className="mx-auto max-w-sm" />
       </div>
     </section>
   );
