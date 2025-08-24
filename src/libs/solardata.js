@@ -1,4 +1,4 @@
-export const companyName = "Gulf Service Center UAE";
+export const companyName = "Gulf Service Center AE";
 
 export const phoneNumber = "+971523251847";
 

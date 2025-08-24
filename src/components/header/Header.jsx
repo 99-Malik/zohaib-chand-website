@@ -9,7 +9,7 @@ import { Phone, Mail, ShieldCheck, Headphones } from "lucide-react";
 
 const BRAND = {
    default: {
-    name: "Gulf Service Center UAE",
+    name: "Gulf Service Center AE",
     hairline: "from-[#2563EB] to-[#1D4ED8]", // appliance-trust blue
     btnSolid: "bg-[#2563EB] hover:bg-[#1D4ED8]", // blue solid
     btnGhost:
@@ -17,28 +17,28 @@ const BRAND = {
     chip: "from-[#2563EB] to-[#1D4ED8]",
   },
   lg: {
-    name: "Gulf Service Center UAE",
+    name: "Gulf Service Center AE",
     hairline: "from-[#A50034] to-[#D64B73]",
     btnSolid: "bg-[#A50034] hover:bg-[#8A002B]",
     btnGhost: "border border-[#A50034]/30 hover:border-[#A50034] hover:bg-[#A50034]/5",
     chip: "from-[#D64B73] to-[#A50034]",
   },
   samsung: {
-    name: "Gulf Service Center UAE",
+    name: "Gulf Service Center AE",
     hairline: "from-[#1428A0] to-[#0B1E7A]",
     btnSolid: "bg-[#1428A0] hover:bg-[#0B1E7A]",
     btnGhost: "border border-[#1428A0]/30 hover:border-[#1428A0] hover:bg-[#1428A0]/5",
     chip: "from-[#1E3AB8] to-[#1428A0]",
   },
   bosch: {
-    name: "Gulf Service Center UAE",
+    name: "Gulf Service Center AE",
     hairline: "from-[#E0211B] to-[#B91C1C]",
     btnSolid: "bg-[#E0211B] hover:bg-[#B91C1C]",
     btnGhost: "border border-[#E0211B]/30 hover:border-[#E0211B] hover:bg-[#E0211B]/5",
     chip: "from-[#F25B55] to-[#E0211B]",
   },
   siemens: {
-    name: "Gulf Service Center UAE",
+    name: "Gulf Service Center AE",
     hairline: "from-[#00A0A6] to-[#0F766E]",
     btnSolid: "bg-[#00A0A6] hover:bg-[#0F6C71]",
     btnGhost: "border border-[#00A0A6]/30 hover:border-[#00A0A6] hover:bg-[#00A0A6]/5",
